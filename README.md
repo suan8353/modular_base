@@ -99,7 +99,6 @@ python scripts/test_inference.py
 ```
 ModularBase/
 ├── docs_cn/                    # Chinese documentation
-├── docs_en/                    # English documentation
 ├── modular_base/               # Core implementation
 │   ├── model/                  # Model definitions (base, packs, router)
 │   ├── engine/                 # Inference engine (pack manager, context compression)
@@ -159,4 +158,5 @@ Apache 2.0
 ---
 
 > **"The future of AI shouldn't belong only to those with top-tier hardware"**
+
 
