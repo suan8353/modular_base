@@ -104,10 +104,9 @@ ModularBase/
 │   ├── model/                  # Model definitions (base, packs, router)
 │   ├── engine/                 # Inference engine (pack manager, context compression)
 │   └── training/               # Training utilities
-├── scripts/                    # Training and test scripts
 ├── packs/                      # Trained data packs
 ├── data/                       # Training data
-└── src/                        # Serial streaming inference engine (CardInfer)
+
 ```
 
 ## 🗺️ Roadmap
@@ -160,3 +159,4 @@ Apache 2.0
 ---
 
 > **"The future of AI shouldn't belong only to those with top-tier hardware"**
+
