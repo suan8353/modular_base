@@ -1,119 +1,86 @@
-### Vision
+# ModularBase
 
-#### Current LLM Challenges:
+## Vision
+ModularBase makes professional-grade AI accessible on consumer hardware.  
+Currently led by a single developer, the project is designed to grow into a **community-driven ecosystem** with modular packages, fostering collaboration, innovation, and democratized AI access.
 
-* **7B models require 14GB+ VRAM, out of reach for most users**
-  *Most large language models demand high-end hardware, locking out a vast majority of potential users and developers.*
+## Current LLM Challenges
+- **High Hardware Requirements**: 7B+ models need 14GB+ VRAM, out of reach for most users.  
+- **Costly Capability Expansion**: Adding new abilities requires full model retraining, slowing innovation.  
+- **Knowledge Updates Cause Forgetting**: Updating models often loses previously learned knowledge, making improvements disruptive.
 
-* **Adding new capabilities requires full retraining, expensive**
-  *The high cost and complexity of retraining entire models for new functionalities limits the ability to rapidly innovate and extend AI capabilities.*
+## ModularBase Solution
+Decomposes LLMs into a **lean base model + pluggable data packs**, allowing for:
+- Efficient operation on low-end hardware
+- Independent module updates
+- On-demand loading
+- Continuous expansion without forgetting
 
-* **Knowledge updates cause catastrophic forgetting**
-  *Updating models with new knowledge often results in losing previously learned information, making updates inefficient and disruptive.*
+## Key Features
+- **Ultra-low VRAM**: Runs seamlessly on 4GB GPUs (~1.6GB resident)  
+- **Modular Capabilities**: Data packs are independent, upgradeable, and extendable  
+- **On-demand Loading**: Only load required modules to optimize memory and compute  
+- **No Forgetting**: Add new capabilities without disrupting existing knowledge  
+- **Easy Extension**: Train new data packs for specialized tasks to future-proof the system
 
-#### ModularBase's Solution:
-
-* **Decompose LLMs into "Minimal Base + Pluggable Data Packs"**
-  *ModularBase tackles these challenges head-on by modularizing LLMs, allowing for flexible, on-demand expansion while maintaining a lean, efficient base model.*
-
----
-
-### Key Features
-
-| **Feature**              | **Description**                                                                                                |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------- |
-| **Ultra-low VRAM**       | *Runs seamlessly on 4GB GPUs, requiring only ~1.6GB of resident VRAM for efficient operations*                 |
-| **Modular Capabilities** | *Data packs are independent, easily upgradable, and extendable—adding new functionality has never been easier* |
-| **On-demand Loading**    | *Only the required data packs are loaded, optimizing memory and processing power for each task*                |
-| **No Forgetting**        | *Add new capabilities without disrupting existing knowledge—continuous improvement without trade-offs*         |
-| **Easy Extension**       | *Easily extendable by training new data packs for specialized tasks, making this platform future-proof*        |
-
----
-
-### Architecture Overview
-
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                   Resident (~1.6GB)                                  │
-│  ┌─────────────────────────────────────────────────────┐           │
-│  │           Base Core (Understanding + Routing + Fusion) │           │
-│  └─────────────────────────────────────────────────────┘           │
-│  ┌──────────────┐              ┌──────────────┐                   │
-│  │  Router Pack │              │ General Chat │                   │
-│  └──────────────┘              └──────────────┘                   │
-└─────────────────────────────────────────────────────────────────────┘
-                              │
-                              ▼ On-demand Loading
-┌─────────────────────────────────────────────────────────────────────┐
-│  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐           │
-│  │  Code  │ │Reasoning│ │Medical │ │ Legal  │ │Creative│           │
-│  │  Pack  │ │  Pack   │ │  Pack  │ │  Pack  │ │  Pack  │           │
-│  └────────┘ └────────┘ └────────┘ └────────┘ └────────┘           │
-└─────────────────────────────────────────────────────────────────────┘
+## Architecture Overview
 ```
 
----
+┌─────────────────────────────────────────────────────────────┐
+│                   Resident (~1.6GB)                          │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │           Base Core (Understanding + Routing + Fusion) │   │
+│  └─────────────────────────────────────────────────────┘   │
+│  ┌──────────────┐              ┌──────────────┐           │
+│  │  Router Pack │              │ General Chat │           │
+│  └──────────────┘              └──────────────┘           │
+└─────────────────────────────────────────────────────────────┘
+│
+▼ On-demand Loading
+┌─────────────────────────────────────────────────────────────┐
+│  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐   │
+│  │  Code  │ │Reasoning│ │Medical │ │ Legal  │ │Creative│   │
+│  │  Pack  │ │  Pack   │ │  Pack  │ │  Pack  │ │  Pack  │   │
+│  └────────┘ └────────┘ └────────┘ └────────┘ └────────┘   │
+└─────────────────────────────────────────────────────────────┘
 
-### VRAM Comparison
+````
 
-| **Solution**    | **VRAM Required** | **Capability Extension** | **Update Cost** |
-| --------------- | ----------------- | ------------------------ | --------------- |
-| **Llama-7B**    | 14GB+             | Full retrain             | High            |
-| **Qwen-1.8B**   | 4GB               | Full retrain             | Medium          |
-| **ModularBase** | ~2-3GB            | Add data packs           | Low             |
+## VRAM Comparison
+| Solution      | VRAM Required | Capability Extension | Update Cost |
+|---------------|---------------|--------------------|------------|
+| Llama-7B      | 14GB+         | Full retrain        | High       |
+| Qwen-1.8B     | 4GB           | Full retrain        | Medium     |
+| ModularBase   | ~2-3GB        | Add data packs      | Low        |
 
----
+## Quick Start
+```bash
+# Clone the project
+git clone https://github.com/suan8353/modular_base.git
+cd ModularBase
 
-### Quick Start
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# or .\venv\Scripts\activate  # Windows
 
-1. **Clone the project**
+# Install dependencies
+pip install -r requirements.txt
 
-   ```bash
-   git clone https://github.com/suan8353/modular_base.git
-   cd ModularBase
-   ```
+# Download training data
+python scripts/download_data.py
 
-2. **Create a virtual environment**
+# Train the base model
+python scripts/train_base.py
 
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # Linux/Mac
-   # or .\venv\Scripts\activate  # Windows
-   ```
+# Train data packs
+python scripts/train_packs.py
 
-3. **Install dependencies**
+# Test inference
+python scripts/test_inference.py
+````
 
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Download training data**
-
-   ```bash
-   python scripts/download_data.py
-   ```
-
-5. **Train the base model**
-
-   ```bash
-   python scripts/train_base.py
-   ```
-
-6. **Train data packs**
-
-   ```bash
-   python scripts/train_packs.py
-   ```
-
-7. **Test inference**
-
-   ```bash
-   python scripts/test_inference.py
-   ```
-
----
-
-### Project Structure
+## Project Structure
 
 ```
 ModularBase/
@@ -126,20 +93,18 @@ ModularBase/
 ├── data/                       # Training data
 ```
 
----
+## Roadmap
 
-### Roadmap
-
-**Phase 1: Architecture Validation** ✅
+**Phase 1: Architecture Validation ✅**
 
 * Core architecture design
 * Base + Data Pack + Router implementation
 * Inference engine prototype
 * Small-scale training validation
 
-**Phase 2: Model Training** 🚧 *In Progress*
+**Phase 2: Model Training 🚧**
 
-* Large-scale data training (50K-200K)
+* Large-scale data training (50K–200K)
 * Base model optimization
 * Core data pack training
 
@@ -155,41 +120,23 @@ ModularBase/
 * Data pack marketplace
 * Community contribution guide
 
----
+## Contributing
 
-### Documentation
+We are excited to grow ModularBase with a **passionate, collaborative community**.
+Currently, the project is led by a single developer, but the goal is to **build an open-source ecosystem** where contributors can develop modules, enhance the core engine, and expand documentation.
 
-| **Document**     | **Description**                                     |
-| ---------------- | --------------------------------------------------- |
-| **Architecture** | *Core architecture and design decisions*            |
-| **Optimization** | *Performance, engineering, robustness optimization* |
-| **Progress**     | *Current status and next steps*                     |
-| **CardInfer**    | *Serial streaming inference engine*                 |
-| **Roadmap**      | *Development roadmap*                               |
-| **Contributing** | *How to contribute*                                 |
+You can participate by:
 
----
+* 🌟 Starring the project to follow progress
+* 💡 Engaging in discussions around architecture, features, and improvements
+* 🔧 Contributing code, enhancements, or new data packs via Pull Requests
+* 📚 Expanding documentation and guides to make the project accessible to all
 
-### Contributing
+Whether you’re building specialized data packs or improving the core engine, your contributions will directly shape the future of modular AI.
 
-We are excited to grow ModularBase with the help of a passionate and innovative community. Here’s how you can get involved:
-
-* 🌟 *Star the project to stay updated on progress.*
-* 💡 *Engage in discussions around architecture, features, and potential improvements.*
-* 🔧 *Contribute code, enhancements, and new data packs through Pull Requests.*
-* 📚 *Help expand our documentation and guides to make it easier for everyone to get started.*
-
-We encourage developers, AI researchers, and enthusiasts to explore the project, share feedback, and contribute to building a modular AI future. Whether you’re interested in creating specialized data packs or improving the core engine, your contribution can make a significant impact.
-
-We believe that **ModularBase** can transform the AI ecosystem into a more inclusive and adaptable space, and we want **YOU** to be a part of it!
-
----
-
-### License
+## License
 
 Apache 2.0
 
-**"The future of AI shouldn't belong only to those with top-tier hardware."**
-
----
+> "The future of AI shouldn't belong only to those with top-tier hardware."
 
