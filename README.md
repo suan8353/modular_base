@@ -69,7 +69,7 @@
 1. **Clone the project**
 
    ```bash
-   git clone https://github.com/your-username/ModularBase.git
+   git clone https://github.com/suan8353/modular_base.git
    cd ModularBase
    ```
 
@@ -192,3 +192,4 @@ Apache 2.0
 **"The future of AI shouldn't belong only to those with top-tier hardware."**
 
 ---
+
